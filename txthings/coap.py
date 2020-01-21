@@ -812,7 +812,7 @@ class Coap(protocol.DatagramProtocol):
     def datagramReceived(self, data, remote):
         host, port = remote
         log.msg("Received %r from %s:%d" % (data, host, port))
-        message = Message.decode(data, (ip_address(host), port), self)
+        message = Message.decode(data, (ip_address(unicode(host)), port), self)
         if self.deduplicateMessage(message) is True:
             return
         if isRequest(message.code):
